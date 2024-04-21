@@ -5,7 +5,6 @@ import math
 from typing import Sequence
 import argparse
 
-
 def solve_onesixthree(numbers: Sequence[int]) -> list[str]:
     """Take 6 numbers, determine all the ways they can give 163.
     
