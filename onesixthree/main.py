@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from pprint import pprint
 from dataclasses import dataclass
 import math
 from typing import Sequence
+import argparse
 
 
 def solve_onesixthree(numbers: Sequence[int]) -> list[str]:
@@ -21,6 +21,8 @@ def solve_onesixthree(numbers: Sequence[int]) -> list[str]:
     for tree in generated_trees:
         if math.isclose(tree.eval(), 163):
             sols.append(tree.elements[0].history)
+    for sol in sols:
+        print(sol)
     return sols
 
 def plus(x: float, y: float) -> float:
@@ -41,6 +43,7 @@ def reverse_divide(x: float, y: float) -> float | None:
     if x == 0:
         return None
     return y / x
+
 OPERATIONS = {
     "plus": plus,
     "minus": minus,
@@ -112,9 +115,11 @@ class Leaf(Tree):
     def eval(self) -> float:
         return self.elements[0].value
 
-    
+def main():
+    parser = argparse.ArgumentParser(description="Solve the 163 problem.")
+    parser.add_argument("numbers", type=int, nargs=6, help="The 6 numbers to use.")
+    args = parser.parse_args()
+    solve_onesixthree(args.numbers)
+
 if __name__ == "__main__":
-    # pprint(solve_onesixthree((1,2,3,4,5,6)))
-    # print(solve_onesixthree((1,1,1,2,8,10)))
-    # print(solve_onesixthree((3,16,10)))
-    print(solve_onesixthree([1, 5, 5, 8, 8, 13]))
+    main()
