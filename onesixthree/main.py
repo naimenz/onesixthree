@@ -21,6 +21,8 @@ def solve_onesixthree(numbers: Sequence[int]) -> list[str]:
     for tree in generated_trees:
         if math.isclose(tree.eval(), 163):
             sols.append(tree.elements[0].history)
+    if len(sols) == 0:
+        print("Oh no! No solutions found.")
     for sol in sols:
         print(sol)
     return sols
